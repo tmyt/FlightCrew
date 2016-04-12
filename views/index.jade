@@ -1,0 +1,50 @@
+doctype
+html
+  block vars
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/components/Umi/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/css/default.css')
+    title FlightCrew | !{name}
+  body
+    header
+      .navbar.navbar-default.navbar-static-top
+        .container
+          .navbar-header
+            a.navbar-brand FlightCrew | !{name}
+          if account
+            ul.nav.navbar-nav.navbar-right
+              li: a(href='/logout') ログアウト
+    .container
+      if account
+        .bs-callout.bs-callout-success
+          h4 !{account}としてログインしています
+          if exists
+            p すでにPackage Flightに参加しています
+          else
+            p Package Flightに参加できます
+        .text-center
+          if exists
+            a(href='/api/leave')
+              button.btn.btn-lg.navbar-btn Package Flightをやめる
+          else
+            a(href='/api/join')
+              button.btn.btn-lg.navbar-btn Package Flightに参加
+      else
+        .bs-callout.bs-callout-danger
+          h4 ログインしてください
+        .text-center
+          a(href='/auth')
+            button.btn.btn-lg.navbar-btn ログイン
+      if is_admin
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title CSVダウンロード
+          .panel-body
+            a(href='/api/download')
+              button.btn.btn-lg.navbar-btn download
+    script(src='/components/Umi/dist/js/bootstrap.min.js', async)

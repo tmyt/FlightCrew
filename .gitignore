@@ -1,0 +1,4 @@
+node_modules
+public/components
+
+db/*.sqlite3
