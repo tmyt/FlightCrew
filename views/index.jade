@@ -27,11 +27,26 @@ html
             p すでにPackage Flightに参加しています
           else
             p Package Flightに参加できます
-        .text-center
-          if exists
+        if exists
+          .panel.panel-default
+            .panel-heading 注意点
+            .panel-body
+              ul
+                li 最終的な反映が手作業のためすぐに反映されません
+                li 自動で古いバージョンに戻りません。手作業で再インストールが必要です
+          .text-center
             a(href='/api/leave')
               button.btn.btn-lg.navbar-btn Package Flightをやめる
-          else
+        else
+          .panel.panel-default
+            .panel-heading 注意点
+            .panel-body
+              ul
+                li 最終的な反映が手作業のためすぐに反映されません
+                li 既存のインストールへのアップデートとしてストアから配信されます
+                li PC向けWindows 10 のみが現在対象です
+                li Windows 10 1511 (Build 10586) 以降が必要です
+          .text-center
             a(href='/api/join')
               button.btn.btn-lg.navbar-btn Package Flightに参加
       else
