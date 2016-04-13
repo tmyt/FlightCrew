@@ -44,15 +44,19 @@ if(error.length > 0){
   });
   app.get('/', (req, res) => {
     let account = req.user && req.user.account;
+    let db, users;
     sdb.get()
-      .then(d => d.all('SELECT * FROM users WHERE account = ?', account || ''))
+      .then(d => Q(db = d))
+      .then(_ => db.all('SELECT * FROM users WHERE'))
+      .then(ids => { users = ids.length; return Q(db); })
+      .then(_ => db.all('SELECT * FROM users WHERE account = ?', account || ''))
       .then(ids => {
         res.render('index', {
           account: account,
           exists: ids.length > 0,
           is_admin: process.env.ADMIN_ACCOUNT === account,
           name: process.env.APPNAME,
-          users: ids.length
+          users: users
         });
       });
   });
