@@ -47,7 +47,7 @@ if(error.length > 0){
     let db, users;
     sdb.get()
       .then(d => Q(db = d))
-      .then(_ => db.all('SELECT * FROM users WHERE'))
+      .then(_ => db.all('SELECT * FROM users'))
       .then(ids => { users = ids.length; return Q(db); })
       .then(_ => db.all('SELECT * FROM users WHERE account = ?', account || ''))
       .then(ids => {
