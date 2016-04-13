@@ -51,7 +51,8 @@ if(error.length > 0){
           account: account,
           exists: ids.length > 0,
           is_admin: process.env.ADMIN_ACCOUNT === account,
-          name: process.env.APPNAME
+          name: process.env.APPNAME,
+          users: ids.length
         });
       });
   });

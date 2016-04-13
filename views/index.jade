@@ -45,6 +45,7 @@ html
           .panel-heading
             h3.panel-title CSVダウンロード
           .panel-body
-            a(href='/api/download')
+            p 現在の参加者 !{users} 人
+            p: a(href='/api/download')
               button.btn.btn-lg.navbar-btn download
     script(src='/components/Umi/dist/js/bootstrap.min.js', async)
