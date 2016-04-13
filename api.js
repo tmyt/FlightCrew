@@ -33,7 +33,7 @@ router.get('/download', (req, res) => {
        res.attachment('users.csv');
        res.set('Content-Type', 'text/csv');
        console.log(ids);
-       res.send(ids.map(s => `"${s.account}"`).join(','));
+       res.send(ids.map(s => `"${s.account}"`).join('\r\n'));
      })
      .catch(e => {
        res.sendStatus(500);
